@@ -1,4 +1,4 @@
-package pl.przemyslawpitus.brum.domain
+package pl.przemyslawpitus.brum.domain.repository
 
 import pl.przemyslawpitus.brum.domain.entity.Vehicle
 

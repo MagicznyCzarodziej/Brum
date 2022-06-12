@@ -3,9 +3,10 @@ package pl.przemyslawpitus.brum.api
 import org.springframework.http.MediaType
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RestController
-import pl.przemyslawpitus.brum.domain.VehiclesService
+import pl.przemyslawpitus.brum.domain.service.VehiclesService
 import pl.przemyslawpitus.brum.domain.entity.Vehicle
 import java.util.*
+
 
 @RestController
 class VehicleEndpoint(

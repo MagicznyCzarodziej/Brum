@@ -1,7 +1,7 @@
 package pl.przemyslawpitus.brum.infrastructure
 
 import org.springframework.stereotype.Repository
-import pl.przemyslawpitus.brum.domain.VehiclesRepository
+import pl.przemyslawpitus.brum.domain.repository.VehiclesRepository
 import pl.przemyslawpitus.brum.domain.entity.Vehicle
 import java.util.*
 
