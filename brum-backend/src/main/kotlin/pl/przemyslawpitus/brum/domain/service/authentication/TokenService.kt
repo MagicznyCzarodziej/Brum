@@ -7,6 +7,7 @@ import io.jsonwebtoken.SignatureAlgorithm
 import org.springframework.stereotype.Service
 import pl.przemyslawpitus.brum.config.authentication.AuthenticationProperties
 import pl.przemyslawpitus.brum.config.authentication.InvalidTokenException
+import pl.przemyslawpitus.brum.domain.entity.UserId
 import java.time.Duration
 import java.time.Instant
 import java.time.temporal.TemporalAmount
@@ -19,7 +20,7 @@ val REFRESH_TOKEN_EXPIRATION_TIME: TemporalAmount = Duration.ofDays(7)
 class TokenService(
     private val authenticationProperties: AuthenticationProperties,
 ) {
-    fun createAccessToken(id: Int, username: String): String {
+    fun createAccessToken(id: UserId, username: String): String {
        return Jwts.builder()
             .setIssuer(id.toString())
             .setSubject(username)
@@ -28,7 +29,7 @@ class TokenService(
             .compact()
     }
 
-    fun createRefreshToken(id: Int, username: String): String {
+    fun createRefreshToken(id: UserId, username: String): String {
         return Jwts.builder()
             .setIssuer(id.toString())
             .setSubject(username)

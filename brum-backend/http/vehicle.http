@@ -1,0 +1,17 @@
+### My Vehicles
+GET http://localhost:8080/api/vehicles
+Accept: application/json
+
+### Add My Vehicle
+POST http://localhost:8080/api/vehicles
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "vehicle-name",
+  "type": "CAR",
+  "brand": "brand",
+  "model": "model",
+  "productionYear": 2008,
+  "mileage": 142000
+}

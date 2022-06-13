@@ -16,6 +16,7 @@ class AuthenticationService(
 ) {
     init {
         register("deko", "pass")
+        register("gram", "pass")
     }
 
     fun register(username: String, password: String) {

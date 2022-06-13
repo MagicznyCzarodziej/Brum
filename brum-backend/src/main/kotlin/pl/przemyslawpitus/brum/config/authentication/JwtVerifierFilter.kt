@@ -4,11 +4,11 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher
 import org.springframework.web.filter.OncePerRequestFilter
+import pl.przemyslawpitus.brum.domain.entity.UserDetails
 import pl.przemyslawpitus.brum.domain.service.authentication.TokenService
 import javax.servlet.FilterChain
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
-
 
 class JwtVerifierFilter(
     private val tokenService: TokenService,
@@ -42,7 +42,10 @@ class JwtVerifierFilter(
         val claims = tokenService.verifyTokenAndGetClaims(accessToken)
 
         val authentication = UsernamePasswordAuthenticationToken(
-            claims.subject,
+            UserDetails(
+                id = claims.issuer.toInt(),
+                username = claims.subject
+            ),
             null,
             emptyList(),
         )

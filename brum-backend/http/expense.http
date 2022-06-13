@@ -1,0 +1,17 @@
+### My expenses
+GET http://localhost:8080/api/vehicles/1/expenses
+Accept: application/json
+
+
+### Add My Expense
+POST http://localhost:8080/api/vehicles/1/expenses
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "exp name",
+  "description": "exp desc",
+  "amount": "120.12",
+  "category": "SERVICE",
+  "timestamp": "2022-06-13T19:34:01.092312Z"
+}

@@ -14,6 +14,7 @@ import pl.przemyslawpitus.brum.domain.entity.AuthenticationDetails
 import pl.przemyslawpitus.brum.domain.entity.Credentials
 import pl.przemyslawpitus.brum.domain.service.authentication.AuthenticationService
 import pl.przemyslawpitus.brum.domain.service.authentication.InvalidPasswordException
+import pl.przemyslawpitus.brum.domain.service.authentication.UserNotFoundException
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
@@ -39,7 +40,7 @@ class AuthenticationEndpoint(
                 .header(HttpHeaders.SET_COOKIE, refreshTokenCookie)
                 .body(authentication.toDto())
         } catch (exception: Exception) {
-            if (exception is InvalidPasswordException) {
+            if (exception is InvalidPasswordException || exception is UserNotFoundException) {
                 return ResponseEntity.status(HttpStatus.FORBIDDEN).body(
                     InvalidLoginCredentialsDto(
                         error = "Invalid username or password"
