@@ -14,14 +14,14 @@ import pl.przemyslawpitus.brum.domain.entity.NewExpense
 import pl.przemyslawpitus.brum.domain.entity.UserDetails
 import pl.przemyslawpitus.brum.domain.entity.UserId
 import pl.przemyslawpitus.brum.domain.entity.VehicleId
+import pl.przemyslawpitus.brum.domain.service.ExpenseService
 import pl.przemyslawpitus.brum.domain.service.VehicleNotFoundException
-import pl.przemyslawpitus.brum.domain.service.VehicleService
 import java.math.BigDecimal
 import java.time.Instant
 
 @RestController
 class ExpenseEndpoint(
-    val vehicleService: VehicleService
+    val expenseService: ExpenseService,
 ) {
 
     @GetMapping(path = ["/vehicles/{vehicleId}/expenses"], produces = [MediaType.APPLICATION_JSON_VALUE])
@@ -31,7 +31,7 @@ class ExpenseEndpoint(
     ): ResponseEntity<*> {
         val userId = userDetails.id
         return try {
-            val response = vehicleService.getExpenses(
+            val response = expenseService.getExpenses(
                 userId = userId,
                 vehicleId = vehicleId,
             ).toDto()
@@ -50,7 +50,7 @@ class ExpenseEndpoint(
         val userId = userDetails.id
 
         return try {
-            val response = vehicleService
+            val response = expenseService
                 .addExpense(body.toDomain(userId, vehicleId))
                 .toDto()
             ResponseEntity.ok(response)

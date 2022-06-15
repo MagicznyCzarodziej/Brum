@@ -43,6 +43,6 @@ class InMemoryRefuellingRepository : RefuellingRepository {
     }
 
     private fun getNextId(): RefuellingId {
-        return refuellings.size
+        return refuellings.size+1
     }
 }

@@ -53,6 +53,6 @@ class InMemoryVehicleRepository : VehicleRepository {
     }
 
     private fun getNextId(): VehicleId {
-        return vehicles.size
+        return vehicles.size+1
     }
 }

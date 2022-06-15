@@ -1,0 +1,484 @@
+GET http://localhost:8080/api/vehicles/1/expenses
+Accept: application/json
+
+<> 2022-06-16T014506.200.json
+
+###
+
+GET http://localhost:8080/api/vehicles/1/mileage-records
+Accept: application/json
+
+<> 2022-06-16T014458.200.json
+
+###
+
+GET http://localhost:8080/api/vehicles/1/refuellings
+Accept: application/json
+
+<> 2022-06-16T014449.200.json
+
+###
+
+POST http://localhost:8080/api/vehicles/1/refuellings
+Content-Type: application/json
+Accept: application/json
+
+{
+  "timestamp": "2022-06-13T19:34:01.092312Z",
+  "fuelType": "GAS",
+  "fuelLiters": 12.43,
+  "gasStation": "Orlen",
+  "currentMileage": 132798
+}
+
+<> 2022-06-16T014447.200.json
+
+###
+
+GET http://localhost:8080/api/vehicles/1/refuellings
+Accept: application/json
+
+<> 2022-06-16T014442.200.json
+
+###
+
+GET http://localhost:8080/api/vehicles/1/mileage-records
+Accept: application/json
+
+<> 2022-06-16T014435.200.json
+
+###
+
+GET http://localhost:8080/api/vehicles
+Accept: application/json
+
+<> 2022-06-16T014429.200.json
+
+###
+
+POST http://localhost:8080/api/vehicles
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "vehicle-name",
+  "type": "CAR",
+  "brand": "brand",
+  "model": "model",
+  "productionYear": 2008,
+  "mileage": 142000
+}
+
+<> 2022-06-16T014419.200.json
+
+###
+
+GET http://localhost:8080/api/vehicles
+Accept: application/json
+
+<> 2022-06-16T014416.200.json
+
+###
+
+POST http://localhost:8080/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "deko",
+  "password": "pass"
+}
+
+<> 2022-06-16T014412.200.json
+
+###
+
+GET http://localhost:8080/api/vehicles
+Accept: application/json
+
+<> 2022-06-16T014308.200.json
+
+###
+
+POST http://localhost:8080/api/vehicles
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "vehicle-name",
+  "type": "CAR",
+  "brand": "brand",
+  "model": "model",
+  "productionYear": 2008,
+  "mileage": 142000
+}
+
+<> 2022-06-16T014306.200.json
+
+###
+
+GET http://localhost:8080/api/vehicles
+Accept: application/json
+
+<> 2022-06-16T014301.200.json
+
+###
+
+POST http://localhost:8080/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "deko",
+  "password": "pass"
+}
+
+<> 2022-06-16T014255.200.json
+
+###
+
+GET http://localhost:8080/api/vehicles/1/mileage-records
+Accept: application/json
+
+<> 2022-06-16T013014.200.json
+
+###
+
+POST http://localhost:8080/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "deko",
+  "password": "pass"
+}
+
+<> 2022-06-16T013008.200.json
+
+###
+
+GET http://localhost:8080/api/vehicles/1/mileage-records
+Accept: application/json
+
+###
+
+GET http://localhost:8080/api/vehicles
+Accept: application/json
+
+<> 2022-06-16T012944.200.json
+
+###
+
+GET http://localhost:8080/api/vehicles
+Accept: application/json
+
+<> 2022-06-16T012937.200.json
+
+###
+
+GET http://localhost:8080/api/vehicles/1/mileage-records
+Accept: application/json
+
+###
+
+POST http://localhost:8080/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "gram",
+  "password": "pass"
+}
+
+<> 2022-06-16T012913.200.json
+
+###
+
+GET http://localhost:8080/api/vehicles/2/mileage-records
+Accept: application/json
+
+###
+
+GET http://localhost:8080/api/vehicles/1/mileage-records
+Accept: application/json
+
+<> 2022-06-16T011419.200.json
+
+###
+
+GET http://localhost:8080/api/vehicles/1/mileage-records
+Accept: application/json
+
+<> 2022-06-16T011409.200.json
+
+###
+
+POST http://localhost:8080/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "deko",
+  "password": "pass"
+}
+
+<> 2022-06-16T011406.200.json
+
+###
+
+GET http://localhost:8080/api/vehicles/1/mileage-records
+Accept: application/json
+
+<> 2022-06-16T011401.403.json
+
+###
+
+POST http://localhost:8080/api/vehicles/1/refuellings
+Content-Type: application/json
+Accept: application/json
+
+{
+  "timestamp": "2022-06-13T19:34:01.092312Z",
+  "fuelType": "GAS",
+  "fuelLiters": 12.43,
+  "gasStation": "Orlen",
+  "currentMileage": 132798
+}
+
+<> 2022-06-16T005328.200.json
+
+###
+
+POST http://localhost:8080/api/vehicles/2/refuellings
+Content-Type: application/json
+Accept: application/json
+
+{
+  "timestamp": "2022-06-13T19:34:01.092312Z",
+  "fuelType": "GAS",
+  "fuelLiters": 12.43,
+  "gasStation": "Orlen",
+  "currentMileage": 132798
+}
+
+###
+
+GET http://localhost:8080/api/vehicles/2/refuellings
+Accept: application/json
+
+###
+
+POST http://localhost:8080/api/vehicles/1/refuellings
+Content-Type: application/json
+Accept: application/json
+
+{
+  "timestamp": "2022-06-13T19:34:01.092312Z",
+  "fuelType": "GAS",
+  "fuelLiters": 12.43,
+  "gasStation": "Orlen",
+  "currentMileage": 132798
+}
+
+<> 2022-06-16T005224.200.json
+
+###
+
+GET http://localhost:8080/api/vehicles/1/refuellings
+Accept: application/json
+
+<> 2022-06-16T005217.200.json
+
+###
+
+POST http://localhost:8080/api/vehicles/1/refuellings
+Content-Type: application/json
+Accept: application/json
+
+{
+  "timestamp": "2022-06-13T19:34:01.092312Z",
+  "fuelType": "GAS",
+  "fuelLiters": 12.43,
+  "gasStation": "Orlen",
+  "currentMileage": 132798
+}
+
+<> 2022-06-16T001816.200.json
+
+###
+
+GET http://localhost:8080/api/vehicles/1/refuellings
+Accept: application/json
+
+<> 2022-06-16T001812.200.json
+
+###
+
+GET http://localhost:8080/api/vehicles/1/refuellings
+Accept: application/json
+
+<> 2022-06-16T001808.200.json
+
+###
+
+GET http://localhost:8080/api/vehicles/1/refuellings
+Accept: application/json
+
+<> 2022-06-16T001319.200.json
+
+###
+
+POST http://localhost:8080/api/vehicles/1/refuellings
+Content-Type: application/json
+Accept: application/json
+
+{
+  "timestamp": "2022-06-13T19:34:01.092312Z",
+  "fuelType": "GAS",
+  "fuelLiters": 12.43,
+  "gasStation": "Orlen",
+  "currentMileage": 132798
+}
+
+<> 2022-06-16T001315.200.json
+
+###
+
+GET http://localhost:8080/api/vehicles/1/refuellings
+Accept: application/json
+
+<> 2022-06-16T001245.200.json
+
+###
+
+POST http://localhost:8080/api/vehicles/1/refuellings
+Content-Type: application/json
+Accept: application/json
+
+{
+  "timestamp": "2022-06-13T19:34:01.092312Z",
+  "fuelType": "GAS",
+  "fuelLiters": 12.43,
+  "gasStation": "Orlen",
+  "currentMileage": 132798
+}
+
+<> 2022-06-16T001020.200.json
+
+###
+
+GET http://localhost:8080/api/vehicles/1/refuellings
+Accept: application/json
+
+<> 2022-06-16T001010.200.json
+
+###
+
+GET http://localhost:8080/api/vehicles/1/refuelling
+Accept: application/json
+
+<> 2022-06-16T000950.404.json
+
+###
+
+GET http://localhost:8080/api/vehicles/1/expenses
+Accept: application/json
+
+<> 2022-06-16T000936.200.json
+
+###
+
+POST http://localhost:8080/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "deko",
+  "password": "pass"
+}
+
+<> 2022-06-16T000932.200.json
+
+###
+
+POST http://localhost:8080/api/vehicles/1/expenses
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "exp name",
+  "description": "exp desc",
+  "amount": "120.12",
+  "category": "SERVICE",
+  "timestamp": "2022-06-13T19:34:01.092312Z"
+}
+
+<> 2022-06-13T223253.200.json
+
+###
+
+POST http://localhost:8080/api/vehicles/2/expenses
+Content-Type: application/json
+Accept: application/json
+
+{
+  "vehicleId": 1,
+  "name": "exp name",
+  "description": "exp desc",
+  "amount": "120.12",
+  "category": "SERVICE",
+  "timestamp": "2022-06-13T19:34:01.092312Z"
+}
+
+###
+
+GET http://localhost:8080/api/vehicles/1/expenses
+Accept: application/json
+
+<> 2022-06-13T223211.200.json
+
+###
+
+POST http://localhost:8080/api/my-vehicles/2/expenses
+Content-Type: application/json
+Accept: application/json
+
+{
+  "vehicleId": 1,
+  "amount": "120.12",
+  "name": "exp name",
+  "description": "exp desc",
+  "timestamp": "2022-06-13T19:34:01.092312Z"
+}
+
+###
+
+POST http://localhost:8080/api/my-vehicles/2/expenses
+Content-Type: application/json
+Accept: application/json
+
+{
+  "vehicleId": 1,
+  "amount": "120.12",
+  "name": "exp name",
+  "description": "exp desc",
+  "timestamp": "2022-06-13T19:34:01.092312Z"
+}
+
+<> 2022-06-13T220217.200.json
+
+###
+
+GET http://localhost:8080/api/my-vehicles/1/expenses
+Accept: application/json
+
+<> 2022-06-13T220212.200.json
+
+###
+
+GET http://localhost:8080/api/my-vehicles/2/expenses
+Accept: application/json
+
+###
+
+GET http://localhost:8080/api/my-vehicles/2/expenses
+Accept: application/json
+
+<> 2022-06-13T215755.500.json
+
+###
+

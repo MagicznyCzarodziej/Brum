@@ -44,6 +44,6 @@ class InMemoryExpenseRepository : ExpenseRepository {
     }
 
     private fun getNextId(): ExpenseId {
-        return expenses.size
+        return expenses.size+1
     }
 }

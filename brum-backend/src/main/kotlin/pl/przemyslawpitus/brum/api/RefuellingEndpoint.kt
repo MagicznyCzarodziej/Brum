@@ -14,13 +14,13 @@ import pl.przemyslawpitus.brum.domain.entity.Refuelling
 import pl.przemyslawpitus.brum.domain.entity.UserDetails
 import pl.przemyslawpitus.brum.domain.entity.UserId
 import pl.przemyslawpitus.brum.domain.entity.VehicleId
+import pl.przemyslawpitus.brum.domain.service.RefuellingService
 import pl.przemyslawpitus.brum.domain.service.VehicleNotFoundException
-import pl.przemyslawpitus.brum.domain.service.VehicleService
 import java.time.Instant
 
 @RestController
 class RefuellingEndpoint(
-    private val vehicleService: VehicleService,
+    private val refuellingService: RefuellingService,
 ) {
     @GetMapping(path = ["/vehicles/{vehicleId}/refuellings"], produces = [MediaType.APPLICATION_JSON_VALUE])
     fun getRefuellings(
@@ -29,7 +29,7 @@ class RefuellingEndpoint(
     ): ResponseEntity<*> {
         val userId = userDetails.id
         return try {
-            val response = vehicleService.getRefuellings(
+            val response = refuellingService.getRefuellings(
                 userId = userId,
                 vehicleId = vehicleId,
             ).toDto()
@@ -48,7 +48,7 @@ class RefuellingEndpoint(
         val userId = userDetails.id
 
         return try {
-            val response = vehicleService
+            val response = refuellingService
                 .addRefuelling(body.toDomain(userId, vehicleId))
                 .toDto()
             ResponseEntity.ok(response)
