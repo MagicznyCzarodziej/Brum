@@ -1,3 +1,13 @@
 ### My mileage records
 GET http://localhost:8080/api/vehicles/1/mileage-records
 Accept: application/json
+
+### Add mileage record
+POST http://localhost:8080/api/vehicles/1/mileage-records
+Content-Type: application/json
+Accept: application/json
+
+{
+  "timestamp": "2022-06-13T19:34:01.092312Z",
+  "mileage": 140000
+}
