@@ -19,3 +19,13 @@ data class Expense (
 enum class ExpenseCategory {
     FUEL, MAINTENANCE, SERVICE, PARTS, OTHER,
 }
+
+data class NewExpense (
+    val userId: UserId,
+    val vehicleId: VehicleId,
+    val name: String,
+    val description: String,
+    val category: ExpenseCategory,
+    val amount: BigDecimal,
+    val timestamp: Instant,
+)

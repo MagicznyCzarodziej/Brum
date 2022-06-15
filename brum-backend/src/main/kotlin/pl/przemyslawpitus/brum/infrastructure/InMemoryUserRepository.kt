@@ -11,7 +11,7 @@ class InMemoryUserRepository : UserRepository {
     private var nextUserId: UserId = 1
     private val users: MutableList<User> = mutableListOf()
 
-    override fun saveUser(user: RegisterUser) {
+    override fun createUser(user: RegisterUser) {
         val userWithId = User(
             id = nextUserId,
             username = user.username,

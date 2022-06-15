@@ -24,7 +24,7 @@ class AuthenticationService(
         val user = RegisterUser(username = username, passwordHash = passwordHash)
 
         println("Saving user $username")
-        userRepository.saveUser(user)
+        userRepository.createUser(user)
     }
 
     fun login(credentials: Credentials): AuthenticationDetails {

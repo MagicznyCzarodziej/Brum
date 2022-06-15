@@ -8,30 +8,28 @@ import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
-import pl.przemyslawpitus.brum.domain.entity.Expense
-import pl.przemyslawpitus.brum.domain.entity.ExpenseCategory
-import pl.przemyslawpitus.brum.domain.entity.NewExpense
+import pl.przemyslawpitus.brum.domain.entity.FuelType
+import pl.przemyslawpitus.brum.domain.entity.NewRefuelling
+import pl.przemyslawpitus.brum.domain.entity.Refuelling
 import pl.przemyslawpitus.brum.domain.entity.UserDetails
 import pl.przemyslawpitus.brum.domain.entity.UserId
 import pl.przemyslawpitus.brum.domain.entity.VehicleId
 import pl.przemyslawpitus.brum.domain.service.VehicleNotFoundException
 import pl.przemyslawpitus.brum.domain.service.VehicleService
-import java.math.BigDecimal
 import java.time.Instant
 
 @RestController
-class ExpenseEndpoint(
-    val vehicleService: VehicleService
+class RefuellingEndpoint(
+    private val vehicleService: VehicleService,
 ) {
-
-    @GetMapping(path = ["/vehicles/{vehicleId}/expenses"], produces = [MediaType.APPLICATION_JSON_VALUE])
-    fun getMyExpenses(
+    @GetMapping(path = ["/vehicles/{vehicleId}/refuellings"], produces = [MediaType.APPLICATION_JSON_VALUE])
+    fun getRefuellings(
         @AuthenticationPrincipal userDetails: UserDetails,
         @PathVariable vehicleId: Int,
     ): ResponseEntity<*> {
         val userId = userDetails.id
         return try {
-            val response = vehicleService.getExpenses(
+            val response = vehicleService.getRefuellings(
                 userId = userId,
                 vehicleId = vehicleId,
             ).toDto()
@@ -41,17 +39,17 @@ class ExpenseEndpoint(
         }
     }
 
-    @PostMapping(path = ["/vehicles/{vehicleId}/expenses"], produces = [MediaType.APPLICATION_JSON_VALUE])
-    fun addMyExpense(
+    @PostMapping(path = ["/vehicles/{vehicleId}/refuellings"], produces = [MediaType.APPLICATION_JSON_VALUE])
+    fun addRefuelling(
         @AuthenticationPrincipal userDetails: UserDetails,
-        @RequestBody body: NewExpenseDto,
+        @RequestBody body: NewRefuellingDto,
         @PathVariable vehicleId: Int,
     ): ResponseEntity<*> {
         val userId = userDetails.id
 
         return try {
             val response = vehicleService
-                .addExpense(body.toDomain(userId, vehicleId))
+                .addRefuelling(body.toDomain(userId, vehicleId))
                 .toDto()
             ResponseEntity.ok(response)
         } catch (exception: VehicleNotFoundException) {
@@ -60,48 +58,50 @@ class ExpenseEndpoint(
     }
 }
 
-data class NewExpenseDto(
-    val name: String,
-    val description: String,
-    val amount: String,
-    val category: String,
+data class NewRefuellingDto(
     val timestamp: String,
+    val fuelType: String,
+    val fuelLiters: Double,
+    val gasStation: String,
+    val currentMileage: Int,
 ) {
-    fun toDomain(userId: UserId, vehicleId: Int) = NewExpense(
+    fun toDomain(userId: UserId, vehicleId: VehicleId) = NewRefuelling(
         userId = userId,
         vehicleId = vehicleId,
-        name = this.name,
-        description = this.description,
-        category = ExpenseCategory.valueOf(this.category),
-        amount = BigDecimal(this.amount),
         timestamp = Instant.parse(this.timestamp),
+        fuelType = FuelType.valueOf(this.fuelType),
+        fuelLiters = this.fuelLiters,
+        gasStation = this.gasStation,
+        currentMileage = this.currentMileage,
     )
 }
 
-data class ExpenseDto(
-    val vehicleId: VehicleId,
-    val name: String,
-    val description: String,
-    val category: String,
-    val amount: String,
+data class RefuellingDto(
+    val id: Int,
+    val vehicleId: Int,
     val timestamp: String,
+    val fuelType: String,
+    val fuelLiters: Double,
+    val gasStation: String,
+    val currentMileage: Int,
 )
 
-private fun Expense.toDto() = ExpenseDto(
+private fun Refuelling.toDto() = RefuellingDto(
+    id = this.id,
     vehicleId = this.vehicleId,
-    name = this.name,
-    description = this.description,
-    category = this.category.name,
-    amount = this.amount.toPlainString(),
-    timestamp = this.timestamp.toString()
+    timestamp = this.timestamp.toString(),
+    fuelType = this.fuelType.name,
+    fuelLiters = this.fuelLiters,
+    gasStation = this.gasStation,
+    currentMileage = this.currentMileage,
 )
 
-data class ExpensesDto(
-    val expenses: List<ExpenseDto>,
+data class RefuellingsDto(
+    val refuellings: List<RefuellingDto>,
     val totalCount: Int,
 )
 
-private fun List<Expense>.toDto() = ExpensesDto(
-    expenses = this.map { it.toDto() },
+private fun List<Refuelling>.toDto() = RefuellingsDto(
+    refuellings = this.map { it.toDto() },
     totalCount = this.size,
 )

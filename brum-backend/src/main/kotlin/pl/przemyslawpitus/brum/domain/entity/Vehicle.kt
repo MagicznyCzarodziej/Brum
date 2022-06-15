@@ -18,3 +18,13 @@ data class Vehicle (
 enum class VehicleType {
     CAR, MOTORCYCLE,
 }
+
+data class NewVehicle (
+    val userId: UserId,
+    val name: String,
+    val type: VehicleType,
+    val brand: String,
+    val model: String,
+    val productionYear: Year,
+    val mileage: Int,
+)

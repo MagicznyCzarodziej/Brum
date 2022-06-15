@@ -3,15 +3,15 @@ package pl.przemyslawpitus.brum.infrastructure
 import org.springframework.stereotype.Repository
 import pl.przemyslawpitus.brum.domain.entity.Expense
 import pl.przemyslawpitus.brum.domain.entity.ExpenseCategory
-import pl.przemyslawpitus.brum.domain.entity.UserId
-import pl.przemyslawpitus.brum.domain.entity.VehicleId
+import pl.przemyslawpitus.brum.domain.entity.ExpenseId
+import pl.przemyslawpitus.brum.domain.entity.NewExpense
 import pl.przemyslawpitus.brum.domain.repository.ExpenseRepository
 import java.math.BigDecimal
 import java.time.Instant
 
 @Repository
-class InMemoryExpenseRepository: ExpenseRepository {
-    private val expenses: MutableCollection<Expense> = mutableListOf(
+class InMemoryExpenseRepository : ExpenseRepository {
+    private val expenses: MutableList<Expense> = mutableListOf(
         Expense(
             id = 1,
             userId = 1,
@@ -24,16 +24,26 @@ class InMemoryExpenseRepository: ExpenseRepository {
         )
     )
 
-    override fun saveExpense(expense: Expense): Expense {
+    override fun createExpense(newExpense: NewExpense): Expense {
+        val expense = Expense(
+            id = getNextId(),
+            userId = newExpense.userId,
+            vehicleId = newExpense.vehicleId,
+            name = newExpense.name,
+            description = newExpense.description,
+            category = newExpense.category,
+            amount = newExpense.amount,
+            timestamp = newExpense.timestamp,
+        )
         expenses.add(expense)
         return expense
     }
 
-    override fun getExpensesByUserId(userId: UserId): List<Expense> {
-        return expenses.filter { it.userId == userId }
+    override fun getExpenses(): List<Expense> {
+        return expenses
     }
 
-    override fun getExpensesByVehicleId(vehicleId: VehicleId): List<Expense> {
-        return expenses.filter { it.vehicleId == vehicleId }
+    private fun getNextId(): ExpenseId {
+        return expenses.size
     }
 }

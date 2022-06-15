@@ -6,13 +6,13 @@ import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
+import pl.przemyslawpitus.brum.domain.entity.NewVehicle
 import pl.przemyslawpitus.brum.domain.entity.UserDetails
 import pl.przemyslawpitus.brum.domain.entity.UserId
 import pl.przemyslawpitus.brum.domain.service.VehicleService
 import pl.przemyslawpitus.brum.domain.entity.Vehicle
 import pl.przemyslawpitus.brum.domain.entity.VehicleType
 import java.time.Year
-import java.util.*
 
 @RestController
 class VehicleEndpoint(
@@ -25,13 +25,13 @@ class VehicleEndpoint(
     ): VehiclesDto {
         val userId = userDetails.id
 
-        return vehicleService.getVehiclesForUser(userId).toDto()
+        return vehicleService.getVehiclesByUserId(userId).toDto()
     }
 
     @PostMapping(path = ["/vehicles"], produces = [MediaType.APPLICATION_JSON_VALUE])
     fun addMyVehicle(
         @AuthenticationPrincipal userDetails: UserDetails,
-        @RequestBody body: VehicleDto,
+        @RequestBody body: NewVehicleDto,
     ): VehicleDto {
         val userId = userDetails.id
 
@@ -52,6 +52,7 @@ data class VehiclesDto(
 )
 
 private fun Vehicle.toDto() = VehicleDto(
+    id = this.id,
     name = this.name,
     type = this.type.name,
     brand = this.brand,
@@ -61,6 +62,16 @@ private fun Vehicle.toDto() = VehicleDto(
 )
 
 data class VehicleDto(
+    val id: Int,
+    val name: String,
+    val type: String,
+    val brand: String,
+    val model: String,
+    val productionYear: Int,
+    val mileage: Int,
+)
+
+data class NewVehicleDto(
     val name: String,
     val type: String,
     val brand: String,
@@ -68,8 +79,7 @@ data class VehicleDto(
     val productionYear: Int,
     val mileage: Int,
 ) {
-    fun toDomain(userId: UserId) = Vehicle(
-        id = Random().nextInt(),
+    fun toDomain(userId: UserId) = NewVehicle(
         userId = userId,
         name = this.name,
         type = VehicleType.valueOf(this.type),

@@ -1,0 +1,17 @@
+### My refuellings
+GET http://localhost:8080/api/vehicles/1/refuellings
+Accept: application/json
+
+
+### Add refuelling
+POST http://localhost:8080/api/vehicles/1/refuellings
+Content-Type: application/json
+Accept: application/json
+
+{
+  "timestamp": "2022-06-13T19:34:01.092312Z",
+  "fuelType": "GAS",
+  "fuelLiters": 12.43,
+  "gasStation": "Orlen",
+  "currentMileage": 132798
+}

@@ -1,13 +1,15 @@
 package pl.przemyslawpitus.brum.infrastructure
 
 import org.springframework.stereotype.Repository
+import pl.przemyslawpitus.brum.domain.entity.NewVehicle
 import pl.przemyslawpitus.brum.domain.repository.VehicleRepository
 import pl.przemyslawpitus.brum.domain.entity.Vehicle
+import pl.przemyslawpitus.brum.domain.entity.VehicleId
 import pl.przemyslawpitus.brum.domain.entity.VehicleType
 import java.time.Year
 
 @Repository
-class InMemoryVehicleRepository: VehicleRepository {
+class InMemoryVehicleRepository : VehicleRepository {
     private val vehicles: MutableList<Vehicle> = mutableListOf(
         Vehicle(
             id = 1,
@@ -35,8 +37,22 @@ class InMemoryVehicleRepository: VehicleRepository {
         return vehicles
     }
 
-    override fun addVehicle(vehicle: Vehicle): Vehicle {
+    override fun createVehicle(newVehicle: NewVehicle): Vehicle {
+        val vehicle = Vehicle(
+            id = getNextId(),
+            userId = newVehicle.userId,
+            name = newVehicle.name,
+            type = newVehicle.type,
+            brand = newVehicle.brand,
+            model = newVehicle.model,
+            productionYear = newVehicle.productionYear,
+            mileage = newVehicle.mileage,
+        )
         vehicles.add(vehicle)
         return vehicle
+    }
+
+    private fun getNextId(): VehicleId {
+        return vehicles.size
     }
 }

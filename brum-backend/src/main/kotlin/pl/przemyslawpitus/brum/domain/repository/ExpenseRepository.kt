@@ -1,11 +1,9 @@
 package pl.przemyslawpitus.brum.domain.repository
 
 import pl.przemyslawpitus.brum.domain.entity.Expense
-import pl.przemyslawpitus.brum.domain.entity.UserId
-import pl.przemyslawpitus.brum.domain.entity.VehicleId
+import pl.przemyslawpitus.brum.domain.entity.NewExpense
 
 interface ExpenseRepository {
-    fun saveExpense(expense: Expense): Expense
-    fun getExpensesByUserId(userId: UserId): List<Expense>
-    fun getExpensesByVehicleId(vehicleId: VehicleId): List<Expense>
+    fun createExpense(newExpense: NewExpense): Expense
+    fun getExpenses(): List<Expense>
 }
