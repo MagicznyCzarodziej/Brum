@@ -11,11 +11,14 @@ import org.springframework.web.bind.annotation.RestController
 import pl.przemyslawpitus.brum.domain.entity.FuelType
 import pl.przemyslawpitus.brum.domain.entity.NewRefuelling
 import pl.przemyslawpitus.brum.domain.entity.Refuelling
+import pl.przemyslawpitus.brum.domain.entity.RefuellingExpense
 import pl.przemyslawpitus.brum.domain.entity.UserDetails
 import pl.przemyslawpitus.brum.domain.entity.UserId
 import pl.przemyslawpitus.brum.domain.entity.VehicleId
+import pl.przemyslawpitus.brum.domain.service.MissingRefuellingExpense
 import pl.przemyslawpitus.brum.domain.service.RefuellingService
 import pl.przemyslawpitus.brum.domain.service.VehicleNotFoundException
+import java.math.BigDecimal
 import java.time.Instant
 
 @RestController
@@ -54,6 +57,8 @@ class RefuellingEndpoint(
             ResponseEntity.ok(response)
         } catch (exception: VehicleNotFoundException) {
             ResponseEntity.notFound().build<Void>()
+        } catch (exception: MissingRefuellingExpense) {
+            ResponseEntity.badRequest().build<Void>()
         }
     }
 }
@@ -63,7 +68,9 @@ data class NewRefuellingDto(
     val fuelType: String,
     val fuelLiters: Double,
     val gasStation: String,
-    val currentMileage: Int,
+    val currentMileage: Int?,
+    val createExpense: Boolean,
+    val expense: RefuellingExpenseDto?,
 ) {
     fun toDomain(userId: UserId, vehicleId: VehicleId) = NewRefuelling(
         userId = userId,
@@ -73,6 +80,16 @@ data class NewRefuellingDto(
         fuelLiters = this.fuelLiters,
         gasStation = this.gasStation,
         currentMileage = this.currentMileage,
+        createExpense = this.createExpense,
+        expense = this.expense?.toDomain(),
+    )
+}
+
+data class RefuellingExpenseDto(
+    val amount: String,
+) {
+    fun toDomain() = RefuellingExpense(
+        amount = BigDecimal(amount),
     )
 }
 
@@ -83,7 +100,7 @@ data class RefuellingDto(
     val fuelType: String,
     val fuelLiters: Double,
     val gasStation: String,
-    val currentMileage: Int,
+    val currentMileage: Int?,
 )
 
 private fun Refuelling.toDto() = RefuellingDto(

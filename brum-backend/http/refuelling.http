@@ -13,5 +13,9 @@ Accept: application/json
   "fuelType": "GAS",
   "fuelLiters": 12.43,
   "gasStation": "Orlen",
-  "currentMileage": 132798
+  "currentMileage": "987654",
+  "createExpense": true,
+  "expense": {
+    "amount": "32.12"
+  }
 }
